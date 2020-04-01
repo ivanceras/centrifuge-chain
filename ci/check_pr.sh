@@ -9,6 +9,7 @@
 # get the commit sha for this PR
 CI_COMMIT_SHA=$(git rev-parse HEAD)
 
+echo "github project: ${GITHUB_PROJECT}"
 
 boldprint () { printf "|\n| \033[1m${@}\033[0m\n|\n" ; }
 
@@ -60,7 +61,7 @@ github_pr_from_commit () {
 # returns the label names separated by a new line
 # Note: the label names is double quoted
 github_label_from_pr () {
-	pr_info=$(curl -s https://api.github.com/repos/centrifuge/centrifuge-chain/pulls/${1})
+	pr_info=$(curl -s https://api.github.com/repos/${GITHUB_PROJECT}/pulls/${1})
 	labels=$(echo ${pr_info} | jq '.labels' )
 	if [ "$labels" != "null" ]; then 
 		label_names=$(echo ${labels} | jq '.[] | .name')
