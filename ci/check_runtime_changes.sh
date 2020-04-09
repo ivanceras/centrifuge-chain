@@ -17,6 +17,8 @@ VERSIONS_FILE="runtime/src/lib.rs"
 PR_COMMIT=$(git rev-parse HEAD~1)
 echo "commit: ${PR_COMMIT}"
 
+echo "travis pull request branch: ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}"
+
 # use color in echo for indicating success or fail
 red='\033[0;31m'
 bold='\033[1m'
