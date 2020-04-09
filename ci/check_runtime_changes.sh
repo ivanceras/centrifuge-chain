@@ -17,14 +17,14 @@ VERSIONS_FILE="runtime/src/lib.rs"
 PR_COMMIT=$(git rev-parse HEAD~1)
 echo "commit: ${PR_COMMIT}"
 
-echo "travis branch: ${$TRAVIS_BRANCH}"
+echo "travis branch: ${TRAVIS_BRANCH}"
 echo "travis pull request branch: ${TRAVIS_PULL_REQUEST_BRANCH}"
 echo "collasque: ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}"
 PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
 
-PR_COMMIT=pull/${PR_BRANCH}/head
+PR_COMMIT=origin/${PR_BRANCH}
 
-git fetch origin ${PR_COMMIT}
+#git fetch origin ${PR_BRANCH}
 
 echo "PR branch ${PR_COMMIT}"
 
