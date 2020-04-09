@@ -17,12 +17,7 @@ VERSIONS_FILE="runtime/src/lib.rs"
 PR_COMMIT=$(git rev-parse HEAD~1)
 echo "commit: ${PR_COMMIT}"
 
-echo "travis branch: ${TRAVIS_BRANCH}"
-echo "travis pull request branch: ${TRAVIS_PULL_REQUEST_BRANCH}"
-echo "collasque: ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}"
-PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
-
-PR_COMMIT=origin/${PR_BRANCH}
+PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
 
 #git fetch origin ${PR_BRANCH}
 
@@ -41,7 +36,7 @@ FATAL="${red}${block}FATAL${nc}"
 
 
 # show the diff of origin/master and this PR sha
-CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT}...${PR_COMMIT} 2>&1 )
+CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT}...${PR_BRANCH} 2>&1 )
 GIT_STATUS=$?
 if (( $GIT_STATUS != 0 ))
 then
