@@ -14,7 +14,7 @@
 BASE_COMMIT="origin/master"
 VERSIONS_FILE="runtime/src/lib.rs"
 
-PR_COMMIT=$(git rev-parse HEAD)
+PR_COMMIT=$(git rev-parse HEAD~1)
 echo "commit: ${PR_COMMIT}"
 
 # use color in echo for indicating success or fail
@@ -30,7 +30,13 @@ FATAL="${red}${block}FATAL${nc}"
 
 
 # show the diff of origin/master and this PR sha
-CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT}...${PR_COMMIT})
+CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT}...${PR_COMMIT} 2>&1 )
+GIT_STATUS=$?
+if (( $GIT_STATUS != 0 ))
+then
+	echo -e "${red}${bold}GIT ERROR${nc}: $CHANGED_FILES"
+	exit 1
+fi
 
 # count the number of files changed in runtime directory
 RUNTIME_FILE_CHANGED=$(echo "${CHANGED_FILES}" | grep -e ^runtime/ | wc -l)

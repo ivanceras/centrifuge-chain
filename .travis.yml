@@ -30,6 +30,7 @@ before_install:
 jobs:
   include:
     - stage: "Check PR runtime changes"
+      if: (type IN (pull_request)) AND (branch = master)
       script: travis_wait 180 ./ci/check_runtime_changes.sh
     - stage: "Test and build"
       name: "Run runtime tests"
