@@ -24,6 +24,8 @@ PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
 
 PR_COMMIT=pull/${PR_BRANCH}/head
 
+git fetch origin ${PR_COMMIT}
+
 echo "PR branch ${PR_COMMIT}"
 
 # use color in echo for indicating success or fail
