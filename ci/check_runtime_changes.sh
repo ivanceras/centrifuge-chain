@@ -15,25 +15,10 @@ BASE_COMMIT="origin/master"
 PR_COMMIT="HEAD"
 VERSIONS_FILE="runtime/src/lib.rs"
 
-echo "pr commit: ${PR_COMMIT}"
-echo "base commit: ${BASE_COMMIT}"
+echo "PR commit: ${PR_COMMIT}"
+echo "BASE commit: ${BASE_COMMIT}"
 
 PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
-
-#git fetch origin ${PR_BRANCH}
-
-# Fetch master branch
-#git fetch origin master
-
-echo "Show git status"
-git status
-
-echo "All git branches"
-git branch -a
-
-echo "git log"
-git log --graph --oneline --decorate=short -n 50
-
 
 echo "PR branch ${PR_BRANCH}"
 
@@ -48,18 +33,6 @@ OK="${green}${block}OK${nc}"
 ERROR="${red}${block}ERROR${nc}"
 FATAL="${red}${block}FATAL${nc}"
 
-
-echo "Diffing master and check-pr4"
-git diff --name-only master check-pr4
-
-echo "Diffing origin/master and check-pr4"
-git diff --name-only origin/master check-pr4
-
-echo "Diffing origin/master and origin/check-pr4"
-git diff --name-only origin/master origin/check-pr4
-
-echo "Diffing origin/master and HEAD"
-git diff --name-only origin/master HEAD
 
 # show the diff of origin/master and this PR sha
 CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT} ${PR_COMMIT} 2>&1 )
