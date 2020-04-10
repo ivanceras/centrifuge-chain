@@ -58,6 +58,9 @@ git diff --name-only origin/master check-pr4
 echo "Diffing origin/master and origin/check-pr4"
 git diff --name-only origin/master origin/check-pr4
 
+echo "Diffing origin/master and HEAD"
+git diff --name-only origin/master HEAD
+
 # show the diff of origin/master and this PR sha
 CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT} ${PR_COMMIT} 2>&1 )
 GIT_STATUS=$?
