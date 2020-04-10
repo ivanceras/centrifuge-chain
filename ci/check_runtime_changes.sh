@@ -24,6 +24,12 @@ PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
 # Fetch master branch
 git fetch origin master
 
+echo "Show git status"
+git status
+
+echo "All git branches"
+git branch -a
+
 echo "PR branch ${PR_BRANCH}"
 
 # use color in echo for indicating success or fail
@@ -40,7 +46,7 @@ FATAL="${red}${block}FATAL${nc}"
 
 
 # show the diff of origin/master and this PR sha
-CHANGED_FILES=$(git diff --name-only origin/master ${PR_BRANCH} 2>&1 )
+CHANGED_FILES=$(git diff --name-only master ${PR_BRANCH} 2>&1 )
 GIT_STATUS=$?
 if (( $GIT_STATUS != 0 ))
 then
