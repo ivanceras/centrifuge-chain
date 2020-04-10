@@ -21,6 +21,9 @@ PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
 
 #git fetch origin ${PR_BRANCH}
 
+# Fetch master branch
+git fetch origin master
+
 echo "PR branch ${PR_BRANCH}"
 
 # use color in echo for indicating success or fail
@@ -33,6 +36,7 @@ yellow='\033[01;33m'
 OK="${green}${block}OK${nc}"
 ERROR="${red}${block}ERROR${nc}"
 FATAL="${red}${block}FATAL${nc}"
+
 
 
 # show the diff of origin/master and this PR sha
