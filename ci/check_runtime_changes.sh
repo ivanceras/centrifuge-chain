@@ -11,19 +11,19 @@
 #
 
 # origin/master as the base commit
-BASE_COMMIT=$(git rev-parse HEAD~1)
+BASE_COMMIT="origin/master"
+PR_COMMIT="HEAD"
 VERSIONS_FILE="runtime/src/lib.rs"
 
-PR_COMMIT=$(git rev-parse HEAD)
 echo "pr commit: ${PR_COMMIT}"
 echo "base commit: ${BASE_COMMIT}"
 
 PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
 
-git fetch origin ${PR_BRANCH}
+#git fetch origin ${PR_BRANCH}
 
 # Fetch master branch
-git fetch origin master
+#git fetch origin master
 
 echo "Show git status"
 git status
