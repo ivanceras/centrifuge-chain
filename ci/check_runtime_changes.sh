@@ -50,7 +50,7 @@ FATAL="${red}${block}FATAL${nc}"
 
 
 # show the diff of origin/master and this PR sha
-CHANGED_FILES=$(git diff --name-only master ${PR_BRANCH} 2>&1 )
+CHANGED_FILES=$(git diff --name-only ${PR_COMMIT} ${PR_BRANCH} 2>&1 )
 GIT_STATUS=$?
 if (( $GIT_STATUS != 0 ))
 then
