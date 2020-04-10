@@ -30,6 +30,10 @@ git status
 echo "All git branches"
 git branch -a
 
+echo "git log"
+git log --graph --oneline --decorate=short -n 10
+
+
 echo "PR branch ${PR_BRANCH}"
 
 # use color in echo for indicating success or fail
