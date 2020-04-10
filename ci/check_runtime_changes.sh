@@ -15,11 +15,12 @@ BASE_COMMIT=$(git rev-parse HEAD~1)
 VERSIONS_FILE="runtime/src/lib.rs"
 
 PR_COMMIT=$(git rev-parse HEAD)
-echo "commit: ${PR_COMMIT}"
+echo "pr commit: ${PR_COMMIT}"
+echo "base commit: ${BASE_COMMIT}"
 
 PR_BRANCH=${TRAVIS_PULL_REQUEST_BRANCH}
 
-#git fetch origin ${PR_BRANCH}
+git fetch origin ${PR_BRANCH}
 
 # Fetch master branch
 git fetch origin master
@@ -48,6 +49,14 @@ ERROR="${red}${block}ERROR${nc}"
 FATAL="${red}${block}FATAL${nc}"
 
 
+echo "Diffing master and check-pr4"
+git diff --name-only master check-pr4
+
+echo "Diffing origin/master and check-pr4"
+git diff --name-only origin/master check-pr4
+
+echo "Diffing origin/master and origin/check-pr4"
+git diff --name-only origin/master origin/check-pr4
 
 # show the diff of origin/master and this PR sha
 CHANGED_FILES=$(git diff --name-only ${BASE_COMMIT} ${PR_COMMIT} 2>&1 )
